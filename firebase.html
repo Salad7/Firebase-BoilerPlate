@@ -31,7 +31,6 @@ writeUserData("02","Eva Yang","eyang@uncc.edu",null);
 var starCountRef = rootRef.ref('posts/' + postId + '/starCount');
 starCountRef.on('Mohamed Salad', function(snapshot) {
   updateStarCount(postElement, snapshot.val());
-  console.log(snapshot.val() + "d");
 });
 </script>
 
@@ -39,7 +38,7 @@ starCountRef.on('Mohamed Salad', function(snapshot) {
 <!-- <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase-storage.js"></script> -->
 
     </head>
-    
+    Login to firebase through msalad@uncc.edu
      
 </html>
 </DOCTYPE>
