@@ -25,14 +25,18 @@
   });
 }
 writeUserData("01","Mohamed Salad","msalad@uncc.edu",null);
-writeUserData("00","thomas","thomas@uncc.edu",null);
+writeUserData("00","Jose Vejar","jvehar1@uncc.edu",null);
+writeUserData("02","Eva Yang","eyang@uncc.edu",null);
+
+var starCountRef = rootRef.ref('posts/' + postId + '/starCount');
+starCountRef.on('Mohamed Salad', function(snapshot) {
+  updateStarCount(postElement, snapshot.val());
+  console.log(snapshot.val() + "d");
+});
 </script>
-
-
 
 <!-- Leave out Storage -->
 <!-- <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase-storage.js"></script> -->
-
 
     </head>
     
