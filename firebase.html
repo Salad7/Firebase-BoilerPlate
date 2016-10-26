@@ -17,16 +17,16 @@
   };
   firebase.initializeApp(config);
   var rootRef = firebase.database();
-  function writeUserData(userId, name, email, imageUrl) {
+  function writeUserData(userId, password, name, email) {
   firebase.database().ref('users/' + userId).set({
-    username: name,
-    email: email,
-    profile_picture : imageUrl
+    username : name,
+    password : password,
+    email : email
   });
 }
-writeUserData("01","Mohamed Salad","msalad@uncc.edu",null);
-writeUserData("00","Jose Vejar","jvehar1@uncc.edu",null);
-writeUserData("02","Eva Yang","eyang@uncc.edu",null);
+writeUserData("01","test","msalad","@");
+writeUserData("00","test","jvehar","@");
+writeUserData("02","test","eyang","@");
 
 var starCountRef = rootRef.ref('posts/' + postId + '/starCount');
 starCountRef.on('Mohamed Salad', function(snapshot) {
