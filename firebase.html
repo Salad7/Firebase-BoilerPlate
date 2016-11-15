@@ -1,12 +1,13 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-    
+<script src="https://www.gstatic.com/firebasejs/3.5.0/firebase-app.js"></script>    
 <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase-auth.js"></script>
 <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase-database.js"></script>
 <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase-messaging.js"></script>
 <script src="https://www.gstatic.com/firebasejs/3.5.1/firebase.js"></script>
 <script>
+
   // Initialize Firebase
   var config = {
     apiKey: "AIzaSyAOLjx1vC8lOtWZopIaslI7Bfz1xTINlbE",
@@ -17,28 +18,81 @@
   };
   firebase.initializeApp(config);
   var rootRef = firebase.database();
-  function writeUserData(userId, password, name, email) {
-  firebase.database().ref('users/' + userId).set({
+  
+  
+//Write User Data, for storing information. accept a username, password, name and email
+function writeUserData(userID, password, name, email) {
+/////////////////////////////////////////////////////////////////30
+  //Firebase function to add details to database
+  //change it to our parameters
+  //alert("Hello! I am an alert box!!");
+  firebase.database().ref('users/' + userID).set({
     username : name,
     password : password,
     email : email
   });
+  //firebase.database().ref('usersD/' + userID).set({
+    //username : name,
+    //password : password,
+    //email : email
+  //});
 }
-writeUserData("01","test","msalad","@");
-writeUserData("00","test","jvehar","@");
-writeUserData("02","test","eyang","@");
 
-var starCountRef = rootRef.ref('posts/' + postId + '/starCount');
-starCountRef.on('Mohamed Salad', function(snapshot) {
-  updateStarCount(postElement, snapshot.val());
-});
+//Function to create an event
+function writeEventData(eventID, name, date, time, place, contact) {
+/////////////////////////////////////////////////////////////////30
+  //Firebase function to add details to database
+  //change it to our parameters
+  firebase.database().ref('events/' + eventID).set({
+    name: name,
+    date : date,
+    time: time,
+    place: place,
+    contact : contact
+  });
+}
+
+
+//Function to login to firebase and check username and password
+function login(username, password, callback) {
+  firebase.database().ref('users/').on('value', function (root) {
+    var users = root.val() //Store all the users in the variable
+    for (var i in users) { //LOop through the users
+      var user = users[i] //Set each user into user[i]
+      if(user.username == username && user.password == password){ //if the password and usernam matches return the callback to true
+        alert("YOU HAVE LOGGED IN");
+        return;
+      } else{
+        alert("LOGG IN FAIL");
+      }
+    }
+    callback(false)
+  })
+}
+
+ login("eyang5@uncc.edu", "Inlove!1", function (success) {
+   console.log(success)
+ })
+
+//Function to call each users events
+
+writeUserData("20","test1","msalad1","@");
+writeUserData("01","test1","jvejar1","@");
+writeEventData("00", "Fall 2016 Graduation", "December 17, 2016","12:00 PM" , "SAC", "704-555-5555", "")
+writeEventData("01", "Thanksgiving Break", "November 17, 2016","12:00 PM" , "Home", "704-545-5555", "")
+// writeUserData("02","test","eyang","@");
+
 </script>
 
-<!-- Leave out Storage -->
-<!-- <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase-storage.js"></script> -->
+ <!--Leave out Storage -->
+ <!--<script src="https://www.gstatic.com/firebasejs/3.5.0/firebase-storage.js"></script> -->
 
     </head>
-    Login to firebase through msalad@uncc.edu
+    
+    <body>
+      Login to firebase through msalad@uncc.edu  
+    </body>
+    
      
 </html>
 </DOCTYPE>
